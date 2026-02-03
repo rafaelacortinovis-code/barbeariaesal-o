@@ -1,11 +1,1831 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aaaaaa</title>
+    <title>Divine Studio - Sistema de Agendamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF8C69;
+            --secondary: #FFA07A;
+            --accent: #E67352;
+            --background: #FFF8F6;
+            --light-background: #FFE9E0;
+            --white: #FFFFFF;
+            --text: #665;
+            --highlight: #D4A16A;
+            --success: #8bc34a;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --available: #4caf50;
+            --font-logo: 'Great Vibes', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Raleway', sans-serif;
+            --border-radius: 10px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: var(--font-logo);
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--highlight);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .perspective-toggle {
+            display: flex;
+            background-color: var(--light-background);
+            border-radius: 50px;
+            padding: 5px;
+            margin-top: 15px;
+        }
+        
+        .perspective-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            font-family: var(--font-body);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .perspective-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            border: none;
+            font-family: var(--font-body);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-background);
+            color: var(--text);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .btn-float {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 140, 105, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            z-index: 100;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-float:hover {
+            transform: scale(1.1);
+            background-color: var(--accent);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .badge-confirmed {
+            background-color: rgba(139, 195, 74, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-pending {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: var(--warning);
+        }
+        
+        .badge-completed {
+            background-color: rgba(255, 140, 105, 0.2);
+            color: var(--primary);
+        }
+        
+        .badge-popular {
+            background-color: rgba(212, 161, 106, 0.2);
+            color: var(--highlight);
+        }
+        
+        .badge-available {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: var(--available);
+        }
+        
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .greeting {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        
+        .appointment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .appointment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .appointment-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .appointment-info h3 {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        
+        .appointment-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .category-card:hover, .category-card.selected {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border: 2px solid var(--primary);
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .service-item {
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .service-item:hover, .service-item.selected {
+            border: 2px solid var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .service-check {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .service-item.selected .service-check {
+            opacity: 1;
+        }
+        
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+        
+        .professional-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .professional-card {
+            display: flex;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .professional-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .professional-card.selected {
+            border: 2px solid var(--primary);
+        }
+        
+        .professional-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-background);
+            margin-right: 20px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+        
+        .professional-rating {
+            color: var(--highlight);
+            margin-top: 5px;
+        }
+        
+        .calendar {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+        
+        .calendar-day {
+            padding: 12px 5px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .calendar-day:hover:not(.disabled) {
+            background-color: var(--light-background);
+        }
+        
+        .calendar-day.selected {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .calendar-day.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .time-slot {
+            padding: 12px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            background-color: var(--light-background);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .time-slot:hover:not(.unavailable) {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .time-slot.selected {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .time-slot.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f5f5f5;
+        }
+        
+        .summary-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-background);
+        }
+        
+        .summary-section h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .edit-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .edit-btn:hover {
+            background-color: var(--light-background);
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method:hover, .payment-method.selected {
+            border: 2px solid var(--primary);
+        }
+        
+        .confirmation-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .confirmation-icon {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .confirmation-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stylist-schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .time-slot-schedule {
+            display: flex;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            align-items: center;
+        }
+        
+        .time-label {
+            width: 100px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .appointment-slot {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-left: 20px;
+            border-left: 4px solid var(--primary);
+            background-color: var(--light-background);
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--white);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+        
+        .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            margin-top: 5px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .action-buttons .btn {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .floating-button-space {
+            height: 80px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #aaa;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--light-background);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .service-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .professional-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .professional-photo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .confirmation-actions {
+                flex-direction: column;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .loading i {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-animation {
+            animation: success 0.5s ease;
+        }
+        
+        @keyframes success {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .appointment-details {
+            background-color: var(--light-background);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .appointment-item.expanded .appointment-details {
+            display: block;
+        }
+        
+        .appointment-item .expand-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .appointment-item .expand-btn:hover {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <!-- Header com Toggle de Perspectiva -->
+        <div class="header">
+            <div>
+                <h1 class="logo">Divine<span>Studio</span></h1>
+                <div class="perspective-toggle">
+                    <button class="perspective-btn active" id="clientPerspective">Cliente</button>
+                    <button class="perspective-btn" id="stylistPerspective">Cabeleireiro</button>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">MC</div>
+                <div>
+                    <p id="userGreeting">Olá, Maria Clara</p>
+                    <p id="userRole" style="font-size: 0.9rem; color: #888;">Cliente</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TELAS DO CLIENTE -->
+        <div id="clientScreens">
+            <!-- Tela 1: Meus Agendamentos -->
+            <div class="screen active" id="appointmentsScreen">
+                <h1 class="greeting">Olá, Maria Clara</h1>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-calendar-alt"></i> Próximo Agendamento</h2>
+                    <div class="appointment-item">
+                        <div class="appointment-info">
+                            <h3>Corte e Coloração</h3>
+                            <div class="appointment-meta">
+                                <span><i class="far fa-calendar"></i> 15 Jun, 2023</span>
+                                <span><i class="far fa-clock"></i> 14:30</span>
+                                <span><i class="fas fa-user"></i> Ana Silva</span>
+                            </div>
+                        </div>
+                        <div class="badge badge-confirmed">Confirmado</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-history"></i> Agendamentos Futuros</h2>
+                    <div class="appointment-list">
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <h3>Manicure e Pedicure</h3>
+                                <div class="appointment-meta">
+                                    <span><i class="far fa-calendar"></i> 22 Jun, 2023</span>
+                                    <span><i class="far fa-clock"></i> 10:00</span>
+                                    <span><i class="fas fa-user"></i> Carla Mendes</span>
+                                </div>
+                            </div>
+                            <div class="badge badge-pending">Pendente</div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <h3>Hidratação Capilar</h3>
+                                <div class="appointment-meta">
+                                    <span><i class="far fa-calendar"></i> 30 Jun, 2023</span>
+                                    <span><i class="far fa-clock"></i> 16:00</span>
+                                    <span><i class="fas fa-user"></i> Ana Silva</span>
+                                </div>
+                            </div>
+                            <div class="badge badge-confirmed">Confirmado</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-clipboard-check"></i> Histórico</h2>
+                    <div class="appointment-list">
+                        <div class="appointment-item">
+                            <div class="appointment-info">
+                                <h3>Corte Feminino</h3>
+                                <div class="appointment-meta">
+                                    <span><i class="far fa-calendar"></i> 5 Jun, 2023</span>
+                                    <span><i class="far fa-clock"></i> 11:00</span>
+                                    <span><i class="fas fa-user"></i> Ana Silva</span>
+                                </div>
+                            </div>
+                            <div class="badge badge-completed">Concluído</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-float" id="newAppointmentBtn">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 2: Escolher Serviço -->
+            <div class="screen" id="servicesScreen">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-spa"></i> Escolha um Serviço</h2>
+                    <p>Selecione uma categoria para visualizar os serviços disponíveis</p>
+                    
+                    <div class="category-grid" id="categoryGrid">
+                        <div class="category-card selected" data-category="hair">
+                            <div class="category-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <h3>Cabelo</h3>
+                        </div>
+                        
+                        <div class="category-card" data-category="esthetics">
+                            <div class="category-icon">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <h3>Estética</h3>
+                        </div>
+                        
+                        <div class="category-card" data-category="manicure">
+                            <div class="category-icon">
+                                <i class="fas fa-hand-sparkles"></i>
+                            </div>
+                            <h3>Manicure</h3>
+                        </div>
+                        
+                        <div class="category-card" data-category="facial">
+                            <div class="category-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <h3>Facial</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="service-list" id="serviceList">
+                        <div class="service-item selected" data-service="haircut" data-price="85.00" data-duration="45">
+                            <div class="badge badge-popular">Popular</div>
+                            <h3>Corte Feminino</h3>
+                            <p>Corte personalizado de acordo com seu formato de rosto e estilo.</p>
+                            <div class="service-meta">
+                                <span><i class="far fa-clock"></i> 45 min</span>
+                            </div>
+                            <div class="service-price">R$ 85,00</div>
+                            <div class="service-check"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                        
+                        <div class="service-item" data-service="coloring" data-price="180.00" data-duration="120">
+                            <h3>Coloração</h3>
+                            <p>Coloração completa com produtos de alta qualidade.</p>
+                            <div class="service-meta">
+                                <span><i class="far fa-clock"></i> 2 horas</span>
+                            </div>
+                            <div class="service-price">R$ 180,00</div>
+                            <div class="service-check"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                        
+                        <div class="service-item" data-service="hydration" data-price="120.00" data-duration="60">
+                            <h3>Hidratação Capilar</h3>
+                            <p>Tratamento intensivo para cabelos ressecados.</p>
+                            <div class="service-meta">
+                                <span><i class="far fa-clock"></i> 1 hora</span>
+                            </div>
+                            <div class="service-price">R$ 120,00</div>
+                            <div class="service-check"><i class="fas fa-check-circle"></i></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="backToAppointmentsFromServices">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextToProfessional">
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 3: Escolher Profissional -->
+            <div class="screen" id="professionalScreen">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-user-tie"></i> Escolha um Profissional</h2>
+                    <p>Selecione o profissional que realizará o serviço</p>
+                    
+                    <div class="professional-list" id="professionalList">
+                        <div class="professional-card selected" data-professional="ana" data-name="Ana Silva" data-specialty="Especialista em cortes e coloração">
+                            <div class="professional-photo">
+                                AS
+                            </div>
+                            <div class="professional-info">
+                                <h3>Ana Silva <i class="fas fa-crown" style="color: var(--highlight);"></i></h3>
+                                <p>Especialista em cortes e coloração</p>
+                                <div class="professional-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span style="color: #888; margin-left: 5px;">4.7</span>
+                                </div>
+                                <div class="badge badge-available">Disponível</div>
+                            </div>
+                        </div>
+                        
+                        <div class="professional-card" data-professional="carla" data-name="Carla Mendes" data-specialty="Especialista em manicure e estética">
+                            <div class="professional-photo">
+                                CM
+                            </div>
+                            <div class="professional-info">
+                                <h3>Carla Mendes</h3>
+                                <p>Especialista em manicure e estética</p>
+                                <div class="professional-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span style="color: #888; margin-left: 5px;">4.2</span>
+                                </div>
+                                <div class="badge badge-available">Disponível</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="backToServices">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextToDateTime">
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 4: Escolher Data e Hora -->
+            <div class="screen" id="dateTimeScreen">
+                <div class="card">
+                    <h2 class="card-title"><i class="far fa-calendar"></i> Escolha Data e Hora</h2>
+                    <p>Selecione uma data e horário disponível para o seu agendamento</p>
+                    
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button class="btn btn-secondary" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                            <h3 id="currentMonth">Junho 2023</h3>
+                            <button class="btn btn-secondary" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Dias serão gerados por JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="time-slots" id="timeSlotsContainer">
+                        <!-- Horários serão gerados por JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="backToProfessionalFromDate">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextToConfirm">
+                            Continuar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 5: Confirmar Agendamento -->
+            <div class="screen" id="confirmScreen">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-clipboard-check"></i> Confirmar Agendamento</h2>
+                    <p>Revise os detalhes do seu agendamento antes de confirmar</p>
+                    
+                    <div class="summary-section">
+                        <h3>
+                            Serviço
+                            <button class="edit-btn" data-edit="services"><i class="fas fa-edit"></i> Editar</button>
+                        </h3>
+                        <p><strong id="summaryService">Corte Feminino</strong></p>
+                        <p>Duração: <span id="summaryDuration">45 minutos</span></p>
+                        <p>Preço: <span id="summaryPrice">R$ 85,00</span></p>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h3>
+                            Profissional
+                            <button class="edit-btn" data-edit="professional"><i class="fas fa-edit"></i> Editar</button>
+                        </h3>
+                        <p><strong id="summaryProfessional">Ana Silva</strong></p>
+                        <p id="summarySpecialty">Especialista em cortes e coloração</p>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h3>
+                            Data e Horário
+                            <button class="edit-btn" data-edit="datetime"><i class="fas fa-edit"></i> Editar</button>
+                        </h3>
+                        <p><strong id="summaryDate">Quinta-feira, 15 de Junho de 2023</strong></p>
+                        <p>Horário: <span id="summaryTime">14:30</span></p>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h3>Local</h3>
+                        <p><strong>Divine Studio</strong></p>
+                        <p>Rua das Flores, 123 - Centro</p>
+                        <p>São Paulo, SP</p>
+                    </div>
+                    
+                    <div class="summary-section">
+                        <h3>Preço Total</h3>
+                        <p id="summaryTotal" style="font-size: 1.5rem; color: var(--primary); font-weight: 600;">R$ 85,00</p>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <label style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <input type="checkbox" id="whatsappReminder" style="margin-right: 10px;">
+                            <span>Desejo receber lembretes por WhatsApp</span>
+                        </label>
+                        
+                        <label style="display: flex; align-items: center;">
+                            <input type="checkbox" id="emailReminder" style="margin-right: 10px;">
+                            <span>Desejo receber lembretes por e-mail</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="backToDateTime">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextToPayment">
+                            Continuar para Pagamento <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 6: Pagamento -->
+            <div class="screen" id="paymentScreen">
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-credit-card"></i> Pagamento</h2>
+                    <p>Escolha uma forma de pagamento para finalizar o agendamento</p>
+                    
+                    <div class="payment-methods" id="paymentMethods">
+                        <div class="payment-method selected" data-method="credit" data-fee="2.50">
+                            <h3><i class="far fa-credit-card"></i> Cartão de Crédito</h3>
+                            <p>Pague com seu cartão de crédito</p>
+                        </div>
+                        
+                        <div class="payment-method" data-method="pix" data-fee="0.00">
+                            <h3><i class="fas fa-mobile-alt"></i> Pix</h3>
+                            <p>Pague instantaneamente com Pix</p>
+                        </div>
+                        
+                        <div class="payment-method" data-method="cash" data-fee="0.00">
+                            <h3><i class="fas fa-money-bill-wave"></i> Dinheiro</h3>
+                            <p>Pague no estabelecimento</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3>Resumo do Pagamento</h3>
+                        <div style="display: flex; justify-content: space-between; margin: 15px 0;">
+                            <span>Serviço: <span id="paymentServiceName">Corte Feminino</span></span>
+                            <span id="paymentServicePrice">R$ 85,00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 15px 0;">
+                            <span>Taxa de conveniência</span>
+                            <span id="paymentFee">R$ 2,50</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin: 15px 0; padding-top: 15px; border-top: 1px solid var(--light-background); font-weight: 600; font-size: 1.2rem;">
+                            <span>Total</span>
+                            <span id="paymentTotal">R$ 87,50</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="backToConfirm">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button class="btn btn-primary" id="nextToConfirmation">
+                            Confirmar Pagamento <i class="fas fa-lock"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 7: Confirmação Final -->
+            <div class="screen" id="confirmationScreen">
+                <div class="confirmation-screen">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    
+                    <h1 style="font-family: var(--font-heading); color: var(--primary); margin-bottom: 15px;">Agendamento Confirmado!</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">Seu agendamento foi realizado com sucesso. Um e-mail de confirmação foi enviado para você.</p>
+                    
+                    <div class="card" style="max-width: 500px; margin: 0 auto;">
+                        <h3>Detalhes do Agendamento</h3>
+                        <div style="text-align: left; margin-top: 20px;">
+                            <p><strong>Serviço:</strong> <span id="confirmationService">Corte Feminino</span></p>
+                            <p><strong>Profissional:</strong> <span id="confirmationProfessional">Ana Silva</span></p>
+                            <p><strong>Data:</strong> <span id="confirmationDate">15 de Junho de 2023</span></p>
+                            <p><strong>Horário:</strong> <span id="confirmationTime">14:30</span></p>
+                            <p><strong>Código:</strong> <span id="confirmationCode">DIV-2023-06-0015</span></p>
+                        </div>
+                        
+                        <div style="margin: 25px 0; text-align: center;">
+                            <div style="background-color: #f5f5f5; padding: 15px; border-radius: var(--border-radius); display: inline-block;">
+                                <p style="margin-bottom: 10px; font-weight: 600;">QR Code para Check-in</p>
+                                <div style="width: 150px; height: 150px; background-color: #ddd; margin: 0 auto; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
+                                    <i class="fas fa-qrcode" style="font-size: 3rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="confirmation-actions">
+                        <button class="btn btn-secondary" id="addToCalendar">
+                            <i class="far fa-calendar-plus"></i> Adicionar ao Calendário
+                        </button>
+                        <button class="btn btn-secondary" id="shareAppointment">
+                            <i class="fas fa-share-alt"></i> Compartilhar
+                        </button>
+                        <button class="btn btn-primary" id="backToHome">
+                            <i class="fas fa-home"></i> Voltar ao Início
+                        </button>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+        </div>
+        
+        <!-- TELAS DO CABELEIREIRO -->
+        <div id="stylistScreens" style="display: none;">
+            <!-- Tela 1: Agenda do Dia (Cabeleireiro) -->
+            <div class="screen active" id="stylistScheduleScreen">
+                <h1 class="greeting">Olá, Ana Silva</h1>
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-calendar-day"></i> Agenda do Dia</h2>
+                    <p id="stylistCurrentDate">Quinta-feira, 15 de Junho de 2023</p>
+                    
+                    <div class="stylist-schedule" id="stylistSchedule">
+                        <div class="time-slot-schedule">
+                            <div class="time-label">09:00</div>
+                            <div class="appointment-slot" style="border-left-color: var(--success);">
+                                <h4>Maria Clara <span class="badge badge-completed">Concluído</span></h4>
+                                <p>Corte Feminino</p>
+                                <button class="btn btn-secondary" style="padding: 5px 10px; margin-top: 5px; font-size: 0.8rem;" data-appointment="1">
+                                    <i class="fas fa-eye"></i> Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="time-slot-schedule">
+                            <div class="time-label">10:30</div>
+                            <div class="appointment-slot" style="border-left-color: var(--warning);">
+                                <h4>Joana Santos <span class="badge badge-pending">Pendente</span></h4>
+                                <p>Coloração</p>
+                                <button class="btn btn-secondary" style="padding: 5px 10px; margin-top: 5px; font-size: 0.8rem;" data-appointment="2">
+                                    <i class="fas fa-eye"></i> Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="time-slot-schedule">
+                            <div class="time-label">14:30</div>
+                            <div class="appointment-slot" style="border-left-color: var(--primary);">
+                                <h4>Maria Clara <span class="badge badge-confirmed">Confirmado</span> <span class="badge badge-popular">Cliente Frequente</span></h4>
+                                <p>Corte Feminino</p>
+                                <button class="btn btn-secondary" style="padding: 5px 10px; margin-top: 5px; font-size: 0.8rem;" data-appointment="3">
+                                    <i class="fas fa-eye"></i> Ver detalhes
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="time-slot-schedule">
+                            <div class="time-label">16:00</div>
+                            <div class="appointment-slot">
+                                <h4>Disponível</h4>
+                                <p>Horário livre para agendamento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title"><i class="fas fa-chart-bar"></i> Resumo do Dia</h2>
+                    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                        <div style="text-align: center; padding: 15px;">
+                            <h3 style="color: var(--primary); font-size: 2rem;">4</h3>
+                            <p>Agendamentos</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px;">
+                            <h3 style="color: var(--success); font-size: 2rem;">6h</h3>
+                            <p>Horas ocupadas</p>
+                        </div>
+                        <div style="text-align: center; padding: 15px;">
+                            <h3 style="color: var(--highlight); font-size: 2rem;">R$ 520</h3>
+                            <p>Receita estimada</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-float" id="stylistNewAppointment">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+            
+            <!-- Tela 2: Detalhes do Agendamento (Cabeleireiro) -->
+            <div class="screen" id="stylistAppointmentDetail">
+                <div class="card">
+                    <button class="btn btn-secondary" id="backToStylistSchedule">
+                        <i class="fas fa-arrow-left"></i> Voltar para Agenda
+                    </button>
+                    
+                    <div style="margin-top: 20px;">
+                        <h2 class="card-title"><i class="fas fa-calendar-check"></i> Detalhes do Agendamento</h2>
+                        
+                        <div style="display: flex; align-items: center; margin: 20px 0;">
+                            <div class="user-avatar" style="width: 70px; height: 70px; font-size: 1.5rem;">MC</div>
+                            <div style="margin-left: 20px;">
+                                <h3>Maria Clara</h3>
+                                <p><i class="fas fa-star" style="color: var(--highlight);"></i> Cliente desde Março 2022</p>
+                                <p><i class="fas fa-cut" style="color: var(--primary);"></i> 8 serviços realizados</p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Serviço Agendado</h3>
+                            <p><strong>Corte Feminino</strong></p>
+                            <p>Duração: 45 minutos</p>
+                            <p>Valor: R$ 85,00</p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Data e Horário</h3>
+                            <p><strong>Quinta-feira, 15 de Junho de 2023</strong></p>
+                            <p>Horário: 14:30</p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Observações do Cliente</h3>
+                            <p>Gostaria de manter o comprimento, apenas as pontas.</p>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Notas do Profissional</h3>
+                            <textarea id="stylistNotes" style="width: 100%; padding: 15px; border-radius: var(--border-radius); border: 1px solid var(--light-background); margin-top: 10px; font-family: var(--font-body);" rows="4" placeholder="Adicione notas sobre o atendimento..."></textarea>
+                        </div>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px;">
+                            <button class="btn btn-primary" id="startAppointment">
+                                <i class="fas fa-play-circle"></i> Iniciar Atendimento
+                            </button>
+                            <button class="btn btn-secondary" id="rescheduleAppointment">
+                                <i class="fas fa-calendar-alt"></i> Reagendar
+                            </button>
+                            <button class="btn btn-secondary" style="background-color: rgba(244, 67, 54, 0.1); color: var(--danger);" id="cancelAppointment">
+                                <i class="fas fa-times-circle"></i> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-button-space"></div>
+            </div>
+        </div>
+        
+        <!-- Navegação Inferior -->
+        <div class="bottom-nav">
+            <button class="nav-item active" data-screen="appointments">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Agenda</span>
+            </button>
+            <button class="nav-item" data-screen="services">
+                <i class="fas fa-spa"></i>
+                <span>Serviços</span>
+            </button>
+            <button class="nav-item" data-screen="clients">
+                <i class="fas fa-users"></i>
+                <span>Clientes</span>
+            </button>
+            <button class="nav-item" data-screen="profile">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Estado global da aplicação
+        const appState = {
+            currentPerspective: 'client',
+            currentScreen: 'appointmentsScreen',
+            selectedService: {
+                id: 'haircut',
+                name: 'Corte Feminino',
+                price: 85.00,
+                duration: 45
+            },
+            selectedProfessional: {
+                id: 'ana',
+                name: 'Ana Silva',
+                specialty: 'Especialista em cortes e coloração'
+            },
+            selectedDate: {
+                day: 15,
+                month: 5, // 0-indexed (0 = Janeiro)
+                year: 2023,
+                weekday: 'Quinta-feira',
+                formatted: '15 de Junho de 2023'
+            },
+            selectedTime: '14:30',
+            selectedPaymentMethod: {
+                method: 'credit',
+                fee: 2.50
+            },
+            user: {
+                name: 'Maria Clara',
+                role: 'Cliente'
+            }
+        };
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            initCalendar();
+            updateSummary();
+            setupEventListeners();
+        });
+
+        // Configurar calendário
+        function initCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            if (!calendarGrid) return;
+            
+            // Cabeçalhos dos dias
+            const dayHeaders = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            dayHeaders.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.style.color = '#ccc';
+                dayElement.textContent = day;
+                calendarGrid.appendChild(dayElement);
+            });
+            
+            // Dias do mês (Junho 2023)
+            // Dias vazios no início (1-3 de junho começam na quinta-feira)
+            for (let i = 0; i < 4; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day disabled';
+                emptyDay.textContent = '';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Dias do mês
+            for (let day = 1; day <= 30; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+                dayElement.dataset.day = day;
+                
+                if (day === appState.selectedDate.day) {
+                    dayElement.classList.add('selected');
+                }
+                
+                dayElement.addEventListener('click', function() {
+                    document.querySelectorAll('.calendar-day:not(.disabled)').forEach(d => {
+                        d.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    
+                    // Atualizar estado
+                    appState.selectedDate.day = parseInt(this.dataset.day);
+                    updateSummary();
+                });
+                
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Gerar horários
+            generateTimeSlots();
+        }
+
+        // Gerar slots de horário
+        function generateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+            if (!timeSlotsContainer) return;
+            
+            timeSlotsContainer.innerHTML = '';
+            
+            const timeSlots = [
+                '09:00', '10:00', '11:00', '12:00', '13:00', 
+                '14:00', '14:30', '15:00', '16:00', '17:00'
+            ];
+            
+            const unavailableSlots = ['09:00', '10:00', '11:00'];
+            
+            timeSlots.forEach(time => {
+                const timeSlot = document.createElement('div');
+                timeSlot.className = 'time-slot';
+                timeSlot.textContent = time;
+                
+                if (unavailableSlots.includes(time)) {
+                    timeSlot.classList.add('unavailable');
+                }
+                
+                if (time === appState.selectedTime) {
+                    timeSlot.classList.add('selected');
+                }
+                
+                if (!unavailableSlots.includes(time)) {
+                    timeSlot.addEventListener('click', function() {
+                        document.querySelectorAll('.time-slot:not(.unavailable)').forEach(t => {
+                            t.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        appState.selectedTime = this.textContent;
+                        updateSummary();
+                    });
+                }
+                
+                timeSlotsContainer.appendChild(timeSlot);
+            });
+        }
+
+        // Atualizar resumo do agendamento
+        function updateSummary() {
+            // Atualizar tela de confirmação
+            document.getElementById('summaryService').textContent = appState.selectedService.name;
+            document.getElementById('summaryDuration').textContent = `${appState.selectedService.duration} minutos`;
+            document.getElementById('summaryPrice').textContent = `R$ ${appState.selectedService.price.toFixed(2).replace('.', ',')}`;
+            document.getElementById('summaryProfessional').textContent = appState.selectedProfessional.name;
+            document.getElementById('summarySpecialty').textContent = appState.selectedProfessional.specialty;
+            document.getElementById('summaryDate').textContent = `${appState.selectedDate.weekday}, ${appState.selectedDate.day} de Junho de 2023`;
+            document.getElementById('summaryTime').textContent = appState.selectedTime;
+            document.getElementById('summaryTotal').textContent = `R$ ${appState.selectedService.price.toFixed(2).replace('.', ',')}`;
+            
+            // Atualizar tela de pagamento
+            document.getElementById('paymentServiceName').textContent = appState.selectedService.name;
+            document.getElementById('paymentServicePrice').textContent = `R$ ${appState.selectedService.price.toFixed(2).replace('.', ',')}`;
+            
+            const total = appState.selectedService.price + appState.selectedPaymentMethod.fee;
+            document.getElementById('paymentFee').textContent = `R$ ${appState.selectedPaymentMethod.fee.toFixed(2).replace('.', ',')}`;
+            document.getElementById('paymentTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            
+            // Atualizar tela de confirmação
+            document.getElementById('confirmationService').textContent = appState.selectedService.name;
+            document.getElementById('confirmationProfessional').textContent = appState.selectedProfessional.name;
+            document.getElementById('confirmationDate').textContent = `${appState.selectedDate.day} de Junho de 2023`;
+            document.getElementById('confirmationTime').textContent = appState.selectedTime;
+        }
+
+        // Configurar todos os event listeners
+        function setupEventListeners() {
+            // Alternar entre perspectivas
+            document.getElementById('clientPerspective').addEventListener('click', switchToClientPerspective);
+            document.getElementById('stylistPerspective').addEventListener('click', switchToStylistPerspective);
+            
+            // Navegação do cliente
+            document.getElementById('newAppointmentBtn').addEventListener('click', () => showScreen('servicesScreen'));
+            
+            // Fluxo de agendamento do cliente
+            document.getElementById('backToAppointmentsFromServices').addEventListener('click', () => showScreen('appointmentsScreen'));
+            document.getElementById('nextToProfessional').addEventListener('click', () => showScreen('professionalScreen'));
+            document.getElementById('backToServices').addEventListener('click', () => showScreen('servicesScreen'));
+            document.getElementById('nextToDateTime').addEventListener('click', () => showScreen('dateTimeScreen'));
+            document.getElementById('backToProfessionalFromDate').addEventListener('click', () => showScreen('professionalScreen'));
+            document.getElementById('nextToConfirm').addEventListener('click', () => showScreen('confirmScreen'));
+            document.getElementById('backToDateTime').addEventListener('click', () => showScreen('dateTimeScreen'));
+            document.getElementById('nextToPayment').addEventListener('click', () => showScreen('paymentScreen'));
+            document.getElementById('backToConfirm').addEventListener('click', () => showScreen('confirmScreen'));
+            document.getElementById('nextToConfirmation').addEventListener('click', processPayment);
+            document.getElementById('backToHome').addEventListener('click', () => showScreen('appointmentsScreen'));
+            
+            // Navegação do cabeleireiro
+            document.getElementById('stylistNewAppointment').addEventListener('click', () => showScreen('stylistAppointmentDetail'));
+            document.getElementById('backToStylistSchedule').addEventListener('click', () => showScreen('stylistScheduleScreen'));
+            document.getElementById('startAppointment').addEventListener('click', startAppointment);
+            document.getElementById('rescheduleAppointment').addEventListener('click', rescheduleAppointment);
+            document.getElementById('cancelAppointment').addEventListener('click', cancelAppointment);
+            
+            // Botões de edição
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const screen = this.dataset.edit;
+                    switch(screen) {
+                        case 'services':
+                            showScreen('servicesScreen');
+                            break;
+                        case 'professional':
+                            showScreen('professionalScreen');
+                            break;
+                        case 'datetime':
+                            showScreen('dateTimeScreen');
+                            break;
+                    }
+                });
+            });
+            
+            // Seleção de categorias
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Seleção de serviços
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.service-item').forEach(s => s.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    appState.selectedService = {
+                        id: this.dataset.service,
+                        name: this.querySelector('h3').textContent,
+                        price: parseFloat(this.dataset.price),
+                        duration: parseInt(this.dataset.duration)
+                    };
+                    
+                    updateSummary();
+                });
+            });
+            
+            // Seleção de profissionais
+            document.querySelectorAll('.professional-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.professional-card').forEach(p => p.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    appState.selectedProfessional = {
+                        id: this.dataset.professional,
+                        name: this.dataset.name,
+                        specialty: this.dataset.specialty
+                    };
+                    
+                    updateSummary();
+                });
+            });
+            
+            // Seleção de método de pagamento
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.addEventListener('click', function() {
+                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    appState.selectedPaymentMethod = {
+                        method: this.dataset.method,
+                        fee: parseFloat(this.dataset.fee)
+                    };
+                    
+                    updateSummary();
+                });
+            });
+            
+            // Navegação inferior
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const screen = this.dataset.screen;
+                    
+                    // Remover classe active de todos
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    // Adicionar ao clicado
+                    this.classList.add('active');
+                    
+                    if (appState.currentPerspective === 'client') {
+                        switch(screen) {
+                            case 'appointments':
+                                showScreen('appointmentsScreen');
+                                break;
+                            case 'services':
+                                showScreen('servicesScreen');
+                                break;
+                            case 'clients':
+                                alert('Funcionalidade de clientes em desenvolvimento');
+                                break;
+                            case 'profile':
+                                alert('Funcionalidade de perfil em desenvolvimento');
+                                break;
+                        }
+                    } else {
+                        if (screen === 'appointments') {
+                            showScreen('stylistScheduleScreen');
+                        }
+                    }
+                });
+            });
+            
+            // Botões adicionais
+            document.getElementById('addToCalendar').addEventListener('click', addToCalendar);
+            document.getElementById('shareAppointment').addEventListener('click', shareAppointment);
+            
+            // Navegação do calendário
+            document.getElementById('prevMonth').addEventListener('click', () => alert('Navegação para mês anterior'));
+            document.getElementById('nextMonth').addEventListener('click', () => alert('Navegação para próximo mês'));
+            
+            // Botões de agendamento do cabeleireiro
+            document.querySelectorAll('[data-appointment]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    showScreen('stylistAppointmentDetail');
+                });
+            });
+        }
+
+        // Alternar para perspectiva do cliente
+        function switchToClientPerspective() {
+            appState.currentPerspective = 'client';
+            appState.user.name = 'Maria Clara';
+            appState.user.role = 'Cliente';
+            
+            // Atualizar UI
+            document.getElementById('clientPerspective').classList.add('active');
+            document.getElementById('stylistPerspective').classList.remove('active');
+            document.getElementById('clientScreens').style.display = 'block';
+            document.getElementById('stylistScreens').style.display = 'none';
+            document.getElementById('userGreeting').textContent = `Olá, ${appState.user.name}`;
+            document.getElementById('userRole').textContent = appState.user.role;
+            
+            // Mostrar tela inicial do cliente
+            showScreen('appointmentsScreen');
+            
+            // Atualizar navegação inferior
+            updateBottomNav();
+        }
+
+        // Alternar para perspectiva do cabeleireiro
+        function switchToStylistPerspective() {
+            appState.currentPerspective = 'stylist';
+            appState.user.name = 'Ana Silva';
+            appState.user.role = 'Cabeleireiro';
+            
+            // Atualizar UI
+            document.getElementById('clientPerspective').classList.remove('active');
+            document.getElementById('stylistPerspective').classList.add('active');
+            document.getElementById('clientScreens').style.display = 'none';
+            document.getElementById('stylistScreens').style.display = 'block';
+            document.getElementById('userGreeting').textContent = `Olá, ${appState.user.name}`;
+            document.getElementById('userRole').textContent = appState.user.role;
+            
+            // Mostrar tela inicial do cabeleireiro
+            showScreen('stylistScheduleScreen');
+            
+            // Atualizar navegação inferior
+            updateBottomNav();
+        }
+
+        // Mostrar uma tela específica
+        function showScreen(screenId) {
+            // Ocultar todas as telas
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            
+            // Mostrar a tela desejada
+            const targetScreen = document.getElementById(screenId);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                appState.currentScreen = screenId;
+            }
+            
+            // Atualizar navegação inferior
+            updateBottomNav();
+            
+            // Scroll para o topo
+            window.scrollTo(0, 0);
+        }
+
+        // Atualizar navegação inferior
+        function updateBottomNav() {
+            // Remover active de todos
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Determinar qual item deve estar ativo
+            if (appState.currentPerspective === 'client') {
+                switch(appState.currentScreen) {
+                    case 'appointmentsScreen':
+                        document.querySelector('.nav-item[data-screen="appointments"]').classList.add('active');
+                        break;
+                    case 'servicesScreen':
+                    case 'professionalScreen':
+                    case 'dateTimeScreen':
+                    case 'confirmScreen':
+                    case 'paymentScreen':
+                    case 'confirmationScreen':
+                        document.querySelector('.nav-item[data-screen="services"]').classList.add('active');
+                        break;
+                }
+            } else {
+                if (appState.currentScreen === 'stylistScheduleScreen' || 
+                    appState.currentScreen === 'stylistAppointmentDetail') {
+                    document.querySelector('.nav-item[data-screen="appointments"]').classList.add('active');
+                }
+            }
+        }
+
+        // Processar pagamento
+        function processPayment() {
+            // Mostrar loading
+            const confirmBtn = document.getElementById('nextToConfirmation');
+            const originalText = confirmBtn.innerHTML;
+            confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+            confirmBtn.disabled = true;
+            
+            // Simular processamento
+            setTimeout(() => {
+                // Gerar código de confirmação
+                const code = `DIV-${appState.selectedDate.year}-${String(appState.selectedDate.month + 1).padStart(2, '0')}-${String(appState.selectedDate.day).padStart(4, '0')}`;
+                document.getElementById('confirmationCode').textContent = code;
+                
+                // Mostrar tela de confirmação
+                showScreen('confirmationScreen');
+                
+                // Restaurar botão
+                confirmBtn.innerHTML = originalText;
+                confirmBtn.disabled = false;
+                
+                // Animação de confirmação
+                const icon = document.querySelector('.confirmation-icon');
+                icon.classList.add('success-animation');
+            }, 1500);
+        }
+
+        // Funções do cabeleireiro
+        function startAppointment() {
+            alert('Atendimento iniciado! Timer iniciado.');
+            // Aqui seria implementado o timer
+        }
+
+        function rescheduleAppointment() {
+            alert('Funcionalidade de reagendamento em desenvolvimento');
+        }
+
+        function cancelAppointment() {
+            if (confirm('Tem certeza que deseja cancelar este agendamento?')) {
+                alert('Agendamento cancelado com sucesso');
+                showScreen('stylistScheduleScreen');
+            }
+        }
+
+        // Funções adicionais
+        function addToCalendar() {
+            alert('Evento adicionado ao seu calendário!');
+        }
+
+        function shareAppointment() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Meu Agendamento - Divine Studio',
+                    text: `Agendamento confirmado para ${appState.selectedDate.formatted} às ${appState.selectedTime}`,
+                    url: window.location.href
+                });
+            } else {
+                alert('Link do agendamento copiado para a área de transferência!');
+                // Aqui seria implementada a cópia para clipboard
+            }
+        }
+    </script>
 </body>
 </html>
