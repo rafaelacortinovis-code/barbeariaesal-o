@@ -2,66 +2,145 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Agenda do Cabeleireiro - Cadastro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda do divine_estudio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  <!-- Ligar o CSS externo -->
-  <link rel="stylesheet" href="style.css">
+    body {
+      background-color: #FFE3DD; /* Salmão claro */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Caixa principal com título em cima */
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(250, 128, 114, 0.3);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .container h1 {
+      text-align: center;
+      color: #FA8072;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #E56C63;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #FA8072;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #E56C63;
+      background-color: #FFF5F0;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      background-color: #FA8072;
+      color: white;
+    }
+
+    button[type="reset"] {
+      background-color: #DDD;
+      color: #333;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Cadastro de Agendamento</h1>
 
-  <h1>Cadastro de Agendamento</h1>
+    <form action="#" method="post">
+      <p>
+        <label for="nome">Nome do cliente:</label><br>
+        <input type="text" id="nome" name="nome" placeholder="Digite o nome completo" required>
+      </p>
 
-  <form action="#" method="post">
+      <p>
+        <label for="telefone">Telefone / WhatsApp:</label><br>
+        <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+      </p>
 
-    <p>
-      <label for="nome">Nome do cliente:</label><br>
-      <input type="text" id="nome" name="nome" placeholder="Digite o nome completo" required>
-    </p>
+      <p>
+        <label for="servico">Serviço:</label><br>
+        <select id="servico" name="servico" required>
+          <option value="">Selecione um serviço</option>
+          <option value="corte">Corte de cabelo</option>
+          <option value="escova">Escova</option>
+          <option value="quimica">Química (progressiva, luzes etc.)</option>
+          <option value="barba">Barba</option>
+          <option value="outro">Outro</option>
+        </select>
+      </p>
 
-    <p>
-      <label for="telefone">Telefone / WhatsApp:</label><br>
-      <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required>
-    </p>
+      <p>
+        <label for="profissional">Profissional:</label><br>
+        <input type="text" id="profissional" name="profissional" placeholder="Nome do cabeleireiro">
+      </p>
 
-    <p>
-      <label for="servico">Serviço:</label><br>
-      <select id="servico" name="servico" required>
-        <option value="">Selecione um serviço</option>
-        <option value="corte">Corte de cabelo</option>
-        <option value="escova">Escova</option>
-        <option value="quimica">Química (progressiva, luzes etc.)</option>
-        <option value="barba">Barba</option>
-        <option value="outro">Outro</option>
-      </select>
-    </p>
+      <p>
+        <label for="data">Data:</label><br>
+        <input type="date" id="data" name="data" required>
+      </p>
 
-    <p>
-      <label for="profissional">Profissional:</label><br>
-      <input type="text" id="profissional" name="profissional" placeholder="Nome do cabeleireiro">
-    </p>
+      <p>
+        <label for="hora">Hora:</label><br>
+        <input type="time" id="hora" name="hora" required>
+      </p>
 
-    <p>
-      <label for="data">Data:</label><br>
-      <input type="date" id="data" name="data" required>
-    </p>
+      <p>
+        <label for="obs">Observações:</label><br>
+        <textarea id="obs" name="obs" rows="4" cols="40" placeholder="Ex.: tipo de cabelo, preferências, alergias..."></textarea>
+      </p>
 
-    <p>
-      <label for="hora">Hora:</label><br>
-      <input type="time" id="hora" name="hora" required>
-    </p>
-
-    <p>
-      <label for="obs">Observações:</label><br>
-      <textarea id="obs" name="obs" rows="4" cols="40"
-        placeholder="Ex.: tipo de cabelo, preferências, alergias..."></textarea>
-    </p>
-
-    <p>
-      <button type="submit">Cadastrar Agendamento</button>
-      <button type="reset">Limpar</button>
-    </p>
-
-  </form>
-
+      <p>
+        <button type="submit">Cadastrar Agendamento</button>
+        <button type="reset">Limpar</button>
+      </p>
+    </form>
+  </div>
 </body>
 </html>
