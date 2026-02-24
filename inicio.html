@@ -1,46 +1,55 @@
-<!-- index.html - Página Inicial -->
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salão e Barbearia - Início</title>
-    <link rel="stylesheet" href="inicio.css">
-  </head>
-  <body>
-    <div class="index-wrapper">
-      <div class="index-container">
-        <h1>Bem-vindo ao Salão e Barbearia Estilo Perfeito</h1>
+    <title>Estilo Perfeito - Salão & Barbearia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="index-page">
+    <div class="page-wrapper">
+        <div class="page-container">
+            <div class="page-icon">✂️</div>
+            <h1>Bem-vindo ao<br><span>Estilo Perfeito</span></h1>
+            <p class="intro-text">Seu destino para cortes modernos, barbas impecáveis e estilo único. Agende agora!</p>
+            
+            <div class="buttons">
+                <a href="login.html" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Fazer Login
+                </a>
+                <a href="cadastro.html" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> Cadastrar-se
+                </a>
+            </div>
 
-        <p class="intro-text">Seu destino para cortes, tratamentos e estilo impecável. Agende seu horário hoje!</p>
+            <hr class="divider">
 
-        <div class="buttons">
-          <a href="login.html" class="btn">Fazer Login ✨</a>
-          <a href="cadastro.html" class="btn">Cadastrar-se ✨</a>
+            <div class="services">
+                <h3>Nossos Serviços</h3>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fas fa-cut"></i>
+                        <span>Corte Moderno<br><strong>R$45</strong></span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-hand-holding-medical"></i>
+                        <span>Barba Completa<br><strong>R$35</strong></span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-magic"></i>
+                        <span>Degradê Perfeito<br><strong>R$55</strong></span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-spa"></i>
+                        <span>Navalha<br><strong>R$25</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="terms">Faça seu agendamento online 24h por dia ✨</p>
         </div>
-
-        <hr>
-
-        <div class="services">
-          <h3>Nossos Serviços</h3>
-          <div class="service-item">
-            ✂️ Cortes de Cabelo Modernos
-          </div>
-          <div class="service-item">
-            🧔 Barba e Bigode
-          </div>
-          <div class="service-item">
-            🎨 Coloração e Tratamentos
-          </div>
-          <div class="service-item">
-            💅 Manicure e Pedicure
-          </div>
-        </div>
-
-        <p class="terms">
-          Explore nossos serviços e marque seu horário com facilidade após o login ou cadastro.
-        </p>
-      </div>
     </div>
-  </body>
+</body>
 </html>

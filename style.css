@@ -1,0 +1,863 @@
+/* ========================================
+   ESTILO PERFEITO - NIKE x SALMÃO CAMPEÃO
+   Funcional 100% - VENCER OU NADA!
+=========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --salmao: #FA8072;
+    --salmão-dark: #E66A5A;
+    --laranja: #FF7F50;
+    --preto: #1A1A1A;
+    --cinza: #333;
+    --cinza-claro: #666;
+    --branco: #FFF;
+    --bg-claro: #F8F9FA;
+    --sombra-nike: 0 35px 80px rgba(250,128,114,0.25);
+    --sombra-leve: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg-claro) 0%, #fff 100%);
+    color: var(--preto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* NAVBAR NIKE - FIXA E ELEGANTE */
+.nike-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(25px);
+    z-index: 1000;
+    padding: 1.2rem 0;
+    box-shadow: 0 8px 32px rgba(250,128,114,0.15);
+    transition: all 0.4s ease;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-nike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.logo-nike i { font-size: 2.2rem; }
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--cinza);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--salmao);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, var(--salmao), var(--laranja));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.btn-nav {
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    color: white !important;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700 !important;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(250,128,114,0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-nav:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(250,128,114,0.5);
+}
+
+/* HERO NIKE - IMPACTANTE */
+.hero-nike, .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 90px;
+    background: linear-gradient(135deg, #fff 0%, var(--bg-claro) 100%);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse 30% 30% at 20% 20%, rgba(250,128,114,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 25% 25% at 80% 80%, rgba(255,127,80,0.1) 0%, transparent 50%);
+    z-index: -1;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.hero-title-nike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(6rem, 18vw, 12rem);
+    background: linear-gradient(135deg, var(--preto) 0%, var(--salmao) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 0.85;
+    margin-bottom: 1.5rem;
+    letter-spacing: 4px;
+}
+
+.hero-subtitle-nike {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    color: var(--cinza-claro);
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.profissional-hero { background: linear-gradient(135deg, var(--salmao), var(--laranja)); }
+.profissional-hero .hero-title-nike {
+    background: linear-gradient(135deg, white 0%, rgba(255,255,255,0.9) 100%);
+    -webkit-text-fill-color: transparent;
+}
+.profissional-hero .hero-subtitle-nike { color: rgba(255,255,255,0.95); }
+
+/* CONTAINER */
+.container-nike {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+/* SECTIONS */
+.novo-agendamento, .profissionais-nike, .agendamentos-nike, .dashboard-nike, .historico-nike {
+    padding: 8rem 0;
+}
+
+/* TÍTULOS DE SEÇÃO */
+.section-title-nike, .section-header-nike h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 7rem);
+    text-align: center;
+    color: var(--preto);
+    margin-bottom: 2rem;
+    letter-spacing: 5px;
+    position: relative;
+}
+
+.section-title-nike::after, .section-header-nike h2::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--salmao), var(--laranja));
+    border-radius: 3px;
+}
+
+.section-header-nike p {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--cinza-claro);
+    margin-top: 1rem;
+    font-weight: 300;
+}
+
+/* FORMULÁRIO NOVO AGENDAMENTO */
+.novo-agendamento {
+    background: linear-gradient(135deg, rgba(250,128,114,0.03) 0%, transparent 100%);
+}
+
+.form-nike {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    padding: 5rem;
+    border-radius: 40px;
+    box-shadow: var(--sombra-nike);
+}
+
+.form-row-nike {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+#profissionalSelect, #servicoSelect, #dataAgendamento, #horarioSelect {
+    padding: 2rem 2.5rem;
+    border: 3px solid #f5f5f5;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    background: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    width: 100%;
+    appearance: none;
+}
+
+#profissionalSelect:focus, #servicoSelect:focus, #dataAgendamento:focus, #horarioSelect:focus {
+    outline: none;
+    border-color: var(--salmao);
+    box-shadow: 0 0 0 5px rgba(250,128,114,0.15);
+    transform: translateY(-3px);
+}
+
+.btn-nike-primary {
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    color: white;
+    border: none;
+    padding: 2rem 5rem;
+    border-radius: 60px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    box-shadow: 0 20px 50px rgba(250,128,114,0.4);
+    transition: all 0.4s ease;
+}
+
+.btn-nike-primary:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(250,128,114,0.5);
+}
+
+/* CARDS PROFISSIONAIS */
+.profissionais-grid-nike {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+.profissional-nike {
+    display: block;
+    text-decoration: none;
+    background: white;
+    border-radius: 40px;
+    padding: 4rem;
+    box-shadow: var(--sombra-nike);
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.profissional-nike::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--salmao), var(--laranja));
+}
+
+.profissional-nike:hover {
+    transform: translateY(-25px);
+    box-shadow: 0 60px 120px rgba(250,128,114,0.35);
+}
+
+.foto-nike {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 0 auto 2.5rem;
+    position: relative;
+}
+
+.jp-foto { background: linear-gradient(135deg, #FF6B6B, var(--salmao)); }
+.lc-foto { background: linear-gradient(135deg, #4ECDC4, #44A08D); }
+.ms-foto { background: linear-gradient(135deg, #A8E6CF, #88D8A3); }
+
+.info-nike h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--preto);
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.especialidade-nike {
+    text-align: center;
+    color: var(--salmao);
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.rating-nike {
+    text-align: center;
+    color: var(--laranja);
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.precos-nike {
+    margin: 2rem 0;
+}
+
+.preco-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.preco-item.destaque {
+    border-left: 6px solid var(--salmao);
+    padding-left: 2rem;
+    background: rgba(250,128,114,0.08);
+    margin-top: 1.5rem;
+    border-radius: 0 15px 15px 0;
+}
+
+.preco-item span {
+    color: var(--salmao);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.disponibilidade-nike {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.status-disponivel {
+    background: rgba(34,197,94,0.15);
+    color: #059669;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.status-ocupado {
+    background: rgba(239,68,68,0.15);
+    color: #DC2626;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* AGENDAMENTOS CLIENTE */
+.agendamentos-nike {
+    background: linear-gradient(135deg, rgba(250,128,114,0.03) 0%, transparent 100%);
+}
+
+.timeline-nike {
+    max-width: 1200px;
+    margin: 4rem auto 0;
+}
+
+.agendamento-nike {
+    background: white;
+    border-radius: 30px;
+    padding: 4rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--sombra-nike);
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    transition: all 0.4s ease;
+}
+
+.agendamento-nike:hover { transform: translateY(-10px); }
+
+.data-nike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--salmao);
+    min-width: 180px;
+    text-align: center;
+}
+
+.info-agendamento-nike h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--preto);
+    margin-bottom: 1rem;
+}
+
+.info-agendamento-nike p {
+    color: var(--cinza-claro);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.botoes-agendamento {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.btn-editar, .btn-cancelar, .btn-concluir-nike {
+    padding: 1.2rem 2.5rem;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-editar {
+    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+    color: white;
+}
+
+.btn-cancelar {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+}
+
+.btn-concluir-nike {
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+}
+
+.btn-editar:hover, .btn-cancelar:hover, .btn-concluir-nike:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.status-nike {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.futuro-nike { background: rgba(34,197,94,0.15); color: #059669; }
+
+/* DASHBOARD PROFISSIONAL */
+.dashboard-nike { background: linear-gradient(135deg, rgba(250,128,114,0.05) 0%, transparent 100%); }
+
+.stats-nike {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin: 5rem 0;
+}
+
+.stat-card {
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: var(--sombra-nike);
+    border-top: 8px solid var(--salmao);
+    transition: all 0.4s ease;
+}
+
+.stat-card:hover { transform: translateY(-10px); }
+
+.stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--preto);
+    margin-bottom: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.stat-label {
+    color: var(--cinza-claro);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.agenda-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--preto);
+    margin: 4rem 0 3rem;
+    letter-spacing: 4px;
+}
+
+.agenda-nike {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.horario-nike {
+    background: white;
+    border-radius: 30px;
+    padding: 4rem;
+    text-align: center;
+    box-shadow: var(--sombra-nike);
+    transition: all 0.4s ease;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.horario-nike:hover { transform: translateY(-12px); }
+
+.horario-nike.livre {
+    border-top: 8px solid #F3F4F6;
+    background: linear-gradient(135deg, #F9FAFB, #F3F4F6);
+}
+
+.horario-nike.cliente-nike {
+    border-top: 8px solid var(--salmao);
+    background: linear-gradient(135deg, rgba(250,128,114,0.1) 0%, white 100%);
+}
+
+.hora-nike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    color: var(--preto);
+    margin-bottom: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.status-nike {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.horario-nike.livre .status-nike { color: var(--cinza-claro); }
+
+.cliente-nike h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--preto);
+    margin-bottom: 1rem;
+}
+
+.cliente-nike p {
+    color: var(--salmao);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+}
+
+.botoes-agenda-profissional {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* PÁGINAS INICIAIS (index, login, cadastro) */
+.index-page, .login-page, .cadastro-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--bg-claro) 0%, #fff 100%);
+}
+
+.page-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+.page-container {
+    background: white;
+    padding: 6rem 5rem;
+    border-radius: 40px;
+    box-shadow: var(--sombra-nike);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--salmao), var(--laranja));
+}
+
+.page-icon {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 15px 40px rgba(250,128,114,0.4);
+    border: 4px solid var(--salmao);
+}
+
+.page-container h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.page-container h1 span { font-weight: 700; }
+
+.intro-text {
+    color: var(--cinza-claro);
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+.buttons, .demo-login, .demo-cadastro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.btn, .demo-card, .cadastro-card {
+    padding: 2rem 3rem;
+    border-radius: 25px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.4s ease;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: var(--sombra-leve);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover, .demo-card:hover, .cadastro-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-nike);
+}
+
+.demo-card, .cadastro-card {
+    background: white;
+    border: 3px solid #f0f0f0;
+    color: var(--preto);
+}
+
+.demo-icon, .cadastro-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border: 3px solid var(--salmao);
+}
+
+.cliente-card .demo-icon, .cliente-card .cadastro-icon {
+    background: linear-gradient(135deg, var(--salmao), var(--salmão-dark));
+    color: white;
+}
+
+.profissional-card .demo-icon, .profissional-card .cadastro-icon {
+    background: linear-gradient(135deg, #4ECDC4, #44A08D);
+    color: white;
+}
+
+.demo-card h4, .cadastro-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.demo-card p, .cadastro-card p {
+    color: var(--cinza-claro);
+    margin-bottom: 0.5rem;
+}
+
+.btn-login-demo, .cadastro-cta {
+    background: linear-gradient(135deg, var(--salmao), var(--laranja));
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--salmao), var(--laranja), transparent);
+    margin: 4rem 0;
+}
+
+.auth-links {
+    margin: 3rem 0;
+}
+
+.auth-link {
+    color: var(--salmao);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.auth-link:hover { text-decoration: underline; }
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-item {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(250,128,114,0.05);
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: rgba(250,128,114,0.15);
+    transform: translateY(-8px);
+}
+
+.service-item i { 
+    font-size: 3rem; 
+    color: var(--salmao); 
+    margin-bottom: 1.5rem; 
+}
+
+.services h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--preto);
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+/* FOOTER */
+.footer-nike {
+    background: var(--preto);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.footer-nike p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+    .nav-links { gap: 2rem; }
+    .form-row-nike { grid-template-columns: 1fr; }
+    .profissionais-grid-nike { grid-template-columns: 1fr; }
+    .stats-nike { grid-template-columns: 1fr; }
+    .agenda-nike { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .container-nike { padding: 0 2rem; }
+    .form-nike { padding: 3rem 2rem; }
+    .profissional-nike { padding: 3rem 2rem; }
+    .agendamento-nike { flex-direction: column; text-align: center; gap: 2rem; }
+    .botoes-agendamento, .botoes-agenda-profissional { flex-direction: column; width: 100%; }
+    .page-container { padding: 4rem 3rem; margin: 1rem; }
+    .buttons, .demo-login, .demo-cadastro { grid-template-columns: 1fr; }
+}

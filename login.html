@@ -1,51 +1,48 @@
-<!-- login.html - Página de Login (harmonizada com cadastro e inicial) -->
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login no Salão e Barbearia</title>
-    <link rel="stylesheet" href="login.css">
-  </head>
-  <body>
-    <div class="login-wrapper">
-      <div class="login-container">
-        <h1>Bem-vindo ao Login</h1>
+    <title>Login - Estilo Perfeito</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+    <div class="page-wrapper">
+        <div class="page-container">
+            <div class="page-icon">🔐</div>
+            
+            <h1>Área do Cliente</h1>
+            <p class="intro-text">Clique para acessar sua conta e agendar serviços</p>
 
-        <form>
-          <label for="usuario">
-            👤 Usuário:
-          </label>
-          <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" required>
+            <!-- CARDS DE ACESSO DIRETO -->
+            <div class="demo-login">
+                <a href="cliente.html" class="demo-card cliente-card">
+                    <div class="demo-icon">👤</div>
+                    <h4>João Silva</h4>
+                    <p>cliente@elite.com</p>
+                    <small>Senha: 123456</small>
+                    <div class="btn-login-demo">ENTRAR COMO CLIENTE</div>
+                </a>
+                
+                <a href="profissional.html" class="demo-card profissional-card">
+                    <div class="demo-icon">✂️</div>
+                    <h4>Lucas Costa</h4>
+                    <p>barbeiro@elite.com</p>
+                    <small>Senha: 123456</small>
+                    <div class="btn-login-demo">ENTRAR COMO BARBEIRO</div>
+                </a>
+            </div>
 
-          <label for="senha">
-            🔒 Senha:
-          </label>
-          <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            <div class="divider"></div>
 
-          <button type="submit">Entrar Agora ✨</button>
-        </form>
+            <div class="auth-links">
+                <a href="cadastro.html" class="auth-link">Não tem conta? Cadastre-se aqui</a>
+            </div>
 
-        <hr>
-
-        <div class="info">
-          <div class="info-item">
-            <b>Usuário de teste:</b> admin
-          </div>
-          <div class="info-item">
-            <b>Senha de teste:</b> 123456
-          </div>
-          <div class="info-item">
-            Não tem conta? <a href="cadastro.html">Cadastre-se aqui</a>.
-          </div>
+            <p class="terms">Sistema de demonstração - clique nos cards para acessar instantaneamente ✨</p>
         </div>
-
-        <p class="terms">
-          Ao fazer login, você concorda com nossos termos de uso.
-        </p>
-
-        <a href="index.html" class="back-link">Voltar à Página Inicial</a>
-      </div>
     </div>
-  </body>
+</body>
 </html>
