@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Barbearia & Salão - Agendamento Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> <!-- CSS LINKADO -->
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Elite Barbearia & Salão</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#agenda">Agenda</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <a href="#form" class="btn-agendar">Agendar Agora</a>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEÇÃO HERO + FORMULÁRIO -->
+    <section class="hero" id="form">
+        <div class="hero-content">
+            <h1 class="fade-in">Agende seu Horário</h1>
+            <p class="fade-in">Corte, barba, coloração, progressiva, manicure, pedicure, sobrancelha e mais. Profissionais qualificados para o seu melhor visual.</p>
+            
+            <!-- FORMULÁRIO DE AGENDAMENTO -->
+            <div class="form-container fade-in">
+                <form>
+                    <input type="checkbox" id="success" style="display: none;">
+                    
+                    <div class="form-group">
+                        <label for="nome"><i class="fas fa-user"></i> Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp/Telefone *</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico"><i class="fas fa-cut"></i> Serviço Desejado *</label>
+                        <select id="servico" name="servico" required>
+                            <option value="">Selecione o serviço</option>
+                            <option value="corte-masc">Corte Masculino</option>
+                            <option value="corte-barba">Corte + Barba</option>
+                            <option value="barba">Barba Completa</option>
+                            <option value="selagem">Selagem / Progressiva</option>
+                            <option value="coloracao">Coloração</option>
+                            <option value="luzes">Luzes / Mechas</option>
+                            <option value="manicure">Manicure</option>
+                            <option value="pedicure">Pedicure</option>
+                            <option value="sobrancelha">Design de Sobrancelha</option>
+                            <option value="cilios">Alongamento de Cílios</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <input type="text" class="servico-outros" placeholder="Descreva o serviço desejado" style="margin-top: 1rem;">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="profissional"><i class="fas fa-user-tie"></i> Profissional *</label>
+                            <select id="profissional" name="profissional" required>
+                                <option value="">Selecione</option>
+                                <option value="qualquer">Qualquer profissional</option>
+                                <option value="joao">João (Especialista Barba)</option>
+                                <option value="pedro">Pedro (Cortes Modernos)</option>
+                                <option value="ana">Ana (Coloração e Progressiva)</option>
+                                <option value="maria">Maria (Unhas e Sobrancelhas)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="data"><i class="fas fa-calendar"></i> Data *</label>
+                            <input type="date" id="data" name="data" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario"><i class="fas fa-clock"></i> Horário *</label>
+                        <select id="horario" name="horario" required>
+                            <option value="">Selecione o horário</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacoes"><i class="fas fa-comment-dots"></i> Observações</label>
+                        <textarea id="observacoes" name="observacoes" rows="4" placeholder="Alguma preferência especial?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-calendar-check"></i> Confirmar Agendamento
+                    </button>
+
+                    <div class="success-message">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem; color: #fff;"></i>
+                        <h3>Agendamento Confirmado!</h3>
+                        <p>Recebemos sua solicitação e entraremos em contato via WhatsApp em breve para confirmar.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <div class="footer-item">
+                    <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
+                    <p>Rua Exemplo, 123<br>Pompéia - São Paulo, SP</p>
+                </div>
+                <div class="footer-item">
+                    <h3><i class="fas fa-clock"></i> Funcionamento</h3>
+                    <p>Segunda a Sábado<br>09:00 às 20:00</p>
+                </div>
+                <div class="footer-item">
+                    <h3><i class="fab fa-whatsapp"></i> WhatsApp</h3>
+                    <p>(11) 99999-9999</p>
+                </div>
+                <div class="footer-item">
+                    <h3><i class="fab fa-instagram"></i> Instagram</h3>
+                    <a href="#">@elitebarberbeauty</a>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2026 Elite Barbearia & Salão - Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
