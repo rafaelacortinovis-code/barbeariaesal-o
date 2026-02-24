@@ -1,0 +1,279 @@
+/* styles_index.css - CSS para a página inicial */
+
+/* Reset e configurações globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f9f9f9; /* Cor de fundo bem clarinha, ajustada para um cinza muito claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px; /* Aumentado para desktop */
+  position: relative;
+}
+
+/* Container principal perfeitamente centralizado */
+.index-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px; /* Aumentado para desktop */
+}
+
+.index-container {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 60px 80px; /* Padding maior para desktop */
+  border-radius: 25px;
+  box-shadow: 
+    0 25px 50px rgba(250, 128, 114, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  width: 100%;
+  max-width: 800px; /* Largura maior para desktop */
+  backdrop-filter: blur(15px);
+  /* Borda decorativa ESTÁTICA */
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  background-origin: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+/* Borda externa decorativa ESTÁTICA (sem rotação) */
+.index-container::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #FA8072, #FF7F50, #FFA07A, #FA8072);
+  border-radius: 28px;
+  z-index: -1;
+  /* Sem animação de rotação */
+  filter: blur(1px);
+  opacity: 0.8;
+}
+
+/* Ícone decorativo no topo */
+.index-container::after {
+  content: '✂️';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(250, 128, 114, 0.2);
+  border: 3px solid #FA8072;
+}
+
+/* Título com decoração */
+.index-container h1 {
+  text-align: center;
+  color: #d63384;
+  margin-bottom: 40px;
+  font-size: 36px; /* Fonte maior para desktop */
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(250, 128, 114, 0.2);
+  position: relative;
+}
+
+.index-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FA8072, transparent);
+  border-radius: 2px;
+}
+
+/* Texto introdutório */
+.intro-text {
+  text-align: center;
+  color: #666;
+  font-size: 18px; /* Fonte maior para desktop */
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Botões */
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.btn {
+  width: auto;
+  padding: 18px 40px; /* Botões mais largos */
+  background: linear-gradient(145deg, #FA8072, #FF7F50);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 
+    0 10px 30px rgba(250, 128, 114, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(250, 128, 114, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn::before,
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s ease;
+}
+
+.btn::before {
+  left: -100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn::after {
+  left: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: scale(0) rotate(45deg);
+}
+
+.btn:hover::after {
+  transform: scale(1) rotate(45deg);
+}
+
+/* Separador decorado */
+.index-container hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FA8072, #FF7F50, #FA8072, transparent);
+  margin: 30px 0;
+  border-radius: 2px;
+}
+
+/* Serviços com cards pequenos */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Layout em grid para desktop */
+  gap: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.services h3 {
+  grid-column: 1 / -1;
+  color: #d63384;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.service-item {
+  background: linear-gradient(145deg, #f8f9fa, #ffffff);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+/* Termos decorados */
+.index-container .terms {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  margin-top: 25px;
+  font-style: italic;
+  padding: 15px;
+  background: rgba(250, 128, 114, 0.05);
+  border-radius: 10px;
+  border-left: 4px solid #FA8072;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .index-wrapper {
+    padding: 20px;
+  }
+
+  .index-container {
+    padding: 50px 40px;
+    max-width: 600px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 18px 20px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+  }
+
+  .index-container h1 {
+    font-size: 30px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .index-container {
+    padding: 35px 25px;
+    max-width: 100%;
+  }
+  
+  .index-container h1 {
+    font-size: 26px;
+  }
+}

@@ -1,3 +1,5 @@
+/* styles_cadastro.css - CSS para a página de cadastro */
+
 /* Reset e configurações globais */
 * {
     margin: 0;
@@ -11,37 +13,38 @@
   }
   
   body {
-    font-family: 'Roboto', sans-serif; /* Fonte mais moderna e harmoniosa */
-    /* Fundo mais harmonioso com tons suaves e temáticos para salão/barbearia */
-    background: linear-gradient(135deg, #f0f4f8 0%, #e0e8f0 30%, #f8f0f5 60%, #e8f0f8 100%);
+    font-family: 'Arial', sans-serif;
+    background: #f9f9f9; /* Cor de fundo bem clarinha, ajustada para um cinza muito claro */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 0;
+    padding: 20px;
     position: relative;
+    color: #444;
   }
   
-  /* Container principal perfeitamente centralizado */
+  /* Estilos para cadastro */
   .cadastro-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    flex-grow: 1;
     width: 100%;
-    padding: 40px; /* Aumentado para melhor espaçamento em telas grandes */
+    padding: 40px; /* Aumentado para desktop */
   }
   
   .cadastro-container {
     background: rgba(255, 255, 255, 0.98);
-    padding: 60px 80px; /* Padding aumentado para mais espaço interno e harmonia */
-    border-radius: 30px; /* Bordas mais suaves */
+    padding: 60px 80px; /* Padding maior para desktop */
+    border-radius: 25px;
     box-shadow: 
-      0 30px 60px rgba(0, 0, 0, 0.1), /* Sombra mais suave e natural */
+      0 25px 50px rgba(250, 128, 114, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     width: 100%;
-    max-width: none; /* Ocupa a página inteira, mas com limites responsivos */
-    backdrop-filter: blur(20px); /* Blur mais forte para efeito vidro fosco */
+    max-width: 600px; /* Largura maior para desktop */
+    backdrop-filter: blur(15px);
     border: 3px solid transparent;
     background-clip: padding-box;
     background-origin: border-box;
@@ -49,7 +52,6 @@
     z-index: 10;
   }
   
-  /* Borda externa decorativa ESTÁTICA (sem rotação) */
   .cadastro-container::before {
     content: '';
     position: absolute;
@@ -57,78 +59,74 @@
     left: -3px;
     right: -3px;
     bottom: -3px;
-    background: linear-gradient(45deg, #6a11cb, #2575fc, #6a11cb); /* Cores mais harmoniosas: tons de azul/violeta para sofisticação */
-    border-radius: 33px;
+    background: linear-gradient(45deg, #FA8072, #FF7F50, #FFA07A, #FA8072);
+    border-radius: 28px;
     z-index: -1;
-    filter: blur(2px);
-    opacity: 0.7;
+    filter: blur(1px);
+    opacity: 0.8;
   }
   
-  /* Ícone decorativo no topo, adaptado para cadastro (ex: tesoura para salão) */
   .cadastro-container::after {
     content: '✂️';
     position: absolute;
-    top: -30px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 28px;
-    background: rgba(255, 255, 255, 0.95);
-    width: 60px;
-    height: 60px;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    border: 3px solid #2575fc;
+    box-shadow: 0 8px 20px rgba(250, 128, 114, 0.2);
+    border: 3px solid #FA8072;
   }
   
-  /* Título com decoração */
   .cadastro-container h1 {
     text-align: center;
-    color: #2575fc; /* Cor harmonizada com a borda */
-    margin-bottom: 50px;
-    font-size: 36px;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    color: #d63384;
+    margin-bottom: 40px;
+    font-size: 36px; /* Fonte maior para desktop */
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(250, 128, 114, 0.2);
     position: relative;
   }
   
   .cadastro-container h1::after {
     content: '';
     position: absolute;
-    bottom: -15px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, #2575fc, transparent);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #FA8072, transparent);
     border-radius: 2px;
   }
   
-  /* Labels com ícones */
   .cadastro-container label {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-    color: #333;
+    margin-bottom: 10px;
+    color: #444;
     font-weight: 600;
-    font-size: 16px;
-    gap: 10px;
+    font-size: 16px; /* Fonte maior para desktop */
+    gap: 8px;
   }
   
-  /* Inputs com bordas decorativas */
   .cadastro-container input[type="text"],
   .cadastro-container input[type="email"],
   .cadastro-container input[type="tel"],
   .cadastro-container input[type="password"] {
     width: 100%;
-    padding: 20px 20px 20px 50px;
-    margin-bottom: 30px;
-    border: 2px solid #e0e0e0; /* Bordas mais suaves */
-    border-radius: 20px; /* Bordas mais arredondadas */
+    padding: 18px 20px 18px 50px;
+    margin-bottom: 25px;
+    border: 2px solid #f0f0f0;
+    border-radius: 15px;
     font-size: 16px;
-    background: linear-gradient(145deg, #ffffff, #f9f9f9);
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
     transition: all 0.3s ease;
     font-weight: 500;
     position: relative;
@@ -136,71 +134,68 @@
   
   .cadastro-container input:focus {
     outline: none;
-    border-color: #2575fc;
+    border-color: #FA8072;
     box-shadow: 
-      0 0 0 4px rgba(37, 117, 252, 0.1),
+      0 0 0 4px rgba(250, 128, 114, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 1);
     transform: translateY(-2px);
   }
   
-  /* Ícones nos inputs, adaptados com cores harmonizadas */
   .cadastro-container input[type="text"] {
-    background-image: linear-gradient(90deg, #2575fc 40px, transparent 40px);
+    background-image: linear-gradient(90deg, #FA8072 40px, transparent 40px);
     background-size: 40px 100%;
     background-repeat: no-repeat;
     background-position: left 16px center;
   }
   
   .cadastro-container input[type="email"] {
-    background-image: linear-gradient(90deg, #6a11cb 40px, transparent 40px);
+    background-image: linear-gradient(90deg, #FF7F50 40px, transparent 40px);
     background-size: 40px 100%;
     background-repeat: no-repeat;
     background-position: left 16px center;
   }
   
   .cadastro-container input[type="tel"] {
-    background-image: linear-gradient(90deg, #2575fc 40px, transparent 40px);
+    background-image: linear-gradient(90deg, #FFA07A 40px, transparent 40px);
     background-size: 40px 100%;
     background-repeat: no-repeat;
     background-position: left 16px center;
   }
   
   .cadastro-container input[type="password"] {
-    background-image: linear-gradient(90deg, #6a11cb 40px, transparent 40px);
+    background-image: linear-gradient(90deg, #FA8072 40px, transparent 40px);
     background-size: 40px 100%;
     background-repeat: no-repeat;
     background-position: left 16px center;
   }
   
-  /* Botão super decorado */
   .cadastro-container button {
     width: 100%;
-    padding: 20px;
-    background: linear-gradient(145deg, #2575fc, #6a11cb);
+    padding: 18px;
+    background: linear-gradient(145deg, #FA8072, #FF7F50);
     color: white;
     border: none;
-    border-radius: 20px;
-    font-size: 18px;
+    border-radius: 15px;
+    font-size: 18px; /* Fonte maior para desktop */
     font-weight: bold;
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     box-shadow: 
-      0 10px 30px rgba(37, 117, 252, 0.3),
+      0 10px 30px rgba(250, 128, 114, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
   
   .cadastro-container button:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 
-      0 20px 40px rgba(37, 117, 252, 0.4),
+      0 20px 40px rgba(250, 128, 114, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
   
-  /* Múltiplos efeitos shimmer */
   .cadastro-container button::before,
   .cadastro-container button::after {
     content: '';
@@ -213,7 +208,7 @@
   
   .cadastro-container button::before {
     left: -100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
   }
   
   .cadastro-container button:hover::before {
@@ -222,7 +217,7 @@
   
   .cadastro-container button::after {
     left: 0;
-    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
     transform: scale(0) rotate(45deg);
   }
   
@@ -230,36 +225,34 @@
     transform: scale(1) rotate(45deg);
   }
   
-  /* Separador decorado */
   .cadastro-container hr {
     border: none;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #2575fc, #6a11cb, #2575fc, transparent);
-    margin: 40px 0;
+    background: linear-gradient(90deg, transparent, #FA8072, #FF7F50, #FA8072, transparent);
+    margin: 30px 0;
     border-radius: 2px;
   }
   
-  /* Info com cards pequenos */
   .cadastro-container .info {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
     text-align: center;
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
+    font-size: 15px; /* Fonte maior para desktop */
+    color: #666;
+    line-height: 1.5;
   }
   
   .cadastro-container .info-item {
-    background: linear-gradient(145deg, #f9f9f9, #ffffff);
-    padding: 15px 25px;
-    border-radius: 15px;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
   
   .cadastro-container .info-item a {
-    color: #2575fc;
+    color: #d63384;
     text-decoration: none;
     font-weight: bold;
   }
@@ -268,50 +261,70 @@
     text-decoration: underline;
   }
   
-  /* Termos decorados */
   .cadastro-container .terms {
-    font-size: 14px;
-    color: #777;
+    font-size: 14px; /* Fonte maior para desktop */
+    color: #888;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 25px;
     font-style: italic;
-    padding: 20px;
-    background: rgba(37, 117, 252, 0.05);
-    border-radius: 15px;
-    border-left: 4px solid #2575fc;
+    padding: 15px;
+    background: rgba(250, 128, 114, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #FA8072;
   }
   
-  /* Responsivo - Ajustes para harmonia em diferentes telas */
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #d63384;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsivo */
   @media (max-width: 768px) {
     .cadastro-wrapper {
       padding: 20px;
     }
-    
+  
     .cadastro-container {
       padding: 50px 40px;
+      max-width: 500px;
     }
-    
+  
     .cadastro-container h1 {
       font-size: 30px;
+    }
+  
+    .cadastro-container label {
+      font-size: 15px;
+    }
+  
+    .cadastro-container button {
+      font-size: 17px;
+    }
+  
+    .cadastro-container .info {
+      font-size: 14px;
+    }
+  
+    .cadastro-container .terms {
+      font-size: 13px;
     }
   }
   
   @media (max-width: 480px) {
     .cadastro-container {
-      padding: 40px 30px;
+      padding: 35px 25px;
+      max-width: 100%;
     }
     
     .cadastro-container h1 {
       font-size: 26px;
-    }
-    
-    .cadastro-container input {
-      padding: 16px 20px 16px 45px;
-      margin-bottom: 20px;
-    }
-    
-    .cadastro-container button {
-      padding: 16px;
-      font-size: 16px;
     }
   }
