@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - StyleBarber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Dashboard */
+        .header-dashboard {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-dashboard h1 {
+            background: linear-gradient(45deg, #ff69b4, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #001f3f;
+        }
+
+        .btn-logout {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 15px;
+            padding: 0.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .tabs-list {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .tab-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-link {
+            display: block;
+            padding: 1rem;
+            text-decoration: none;
+            color: #666;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .tab-link.active,
+        .tab-link:hover {
+            background: linear-gradient(45deg, #001f3f, #0074D9);
+            color: white;
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Agenda Dashboard */
+        .agenda-dashboard {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .agenda-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .agenda-title h2 {
+            color: #001f3f;
+        }
+
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .profissional-panel {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .profissional-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profissional-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #001f3f;
+        }
+
+        .profissional-role {
+            background: #ff69b4;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .horario-item {
+            background: white;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .horario-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .horario-tempo {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #001f3f;
+            margin-bottom: 0.3rem;
+        }
+
+        .horario-cliente {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .horario-cor {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            margin: 1rem 0;
+        }
+
+        .cor-laranja { background: linear-gradient(45deg, #ffa500, #ff8c00); }
+        .cor-azul { background: linear-gradient(45deg, #001f3f, #0074D9); }
+        .cor-verde { background: linear-gradient(45deg, #00ff00, #32CD32); }
+        .cor-rosa { background: linear-gradient(45deg, #ff69b4, #ff1493); }
+
+        .btn-add-agenda {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            background: #00ff00;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,255,0,0.3);
+        }
+
+        /* Caixa Dashboard */
+        .caixa-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .caixa-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #001f3f;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .status-aberta { background: #fff3cd; color: #856404; }
+        .status-fechada { background: #d1ecf1; color: #0c5460; }
+
+        .comanda-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comanda-numero {
+            font-weight: bold;
+            color: #001f3f;
+        }
+
+        .comanda-valor {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .valor-verde { color: #00ff00; }
+        .valor-laranja { color: #ffa500; }
+
+        .btn-pagamento {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-pix { background: #00ff00; color: white; }
+        .btn-cartao { background: #001f3f; color: white; }
+        .btn-debito { background: #ffa500; color: white; }
+
+        .btn-pagamento:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Totais Caixa */
+        .totais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .total-card {
+            background: linear-gradient(45deg, #ff69b4, #ffa500);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .total-valor {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .total-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Comissões */
+        .comissoes-table {
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .table-header {
+            background: linear-gradient(45deg, #001f3f, #0074D9);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+
+        .status-pendente {
+            background: #fff3cd;
+            color: #856404;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Relatórios */
+        .relatorios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .relatorio-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .relatorio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .relatorio-valor {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Galeria */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .galeria-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .galeria-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, #ff69b4, #ffa500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .agenda-grid,
+            .caixa-dashboard,
+            .totais-grid,
+            .relatorios-grid,
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs-list {
+                flex-direction: column;
+            }
+
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-dashboard">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-dashboard">
+                    <h1>StyleBarber Dashboard</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <strong>Fernanda Torres</strong>
+                        <span>👩‍💻 Admin</span>
+                    </div>
+                    <button class="btn-logout">Sair</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Navegação Tabs -->
+        <nav class="nav-tabs">
+            <ul class="tabs-list">
+                <li class="tab-item"><a href="#" class="tab-link active" onclick="showTab('agenda')">Agenda</a></li>
+                <li class="tab-item"><a href="#" class="tab-link" onclick="showTab('caixa')">Caixa</a></li>
+                <li class="tab-item"><a href="#" class="tab-link" onclick="showTab('comissoes')">Comissões</a></li>
+                <li class="tab-item"><a href="#" class="tab-link" onclick="showTab('relatorios')">Relatórios</a></li>
+                <li class="tab-item"><a href="#" class="tab-link" onclick="showTab('galeria')">Galeria</a></li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo das Abas -->
+        <section id="agenda" class="content-section active">
+            <div class="agenda-dashboard">
+                <div class="agenda-title">
+                    <h2>📅 Agenda Hoje - 21/08/2024</h2>
+                    <button class="btn-add-agenda">+</button>
+                </div>
+                <div class="agenda-grid">
+                    <div class="profissional-panel">
+                        <div class="profissional-header">
+                            <div class="profissional-name">Grazi Pereira</div>
+                            <div class="profissional-role">Maquiador</div>
+                        </div>
+                        <div class="horario-item">
+                            <div class="horario-tempo">09:00 - 09:30</div>
+                            <div class="horario-cliente">Fernanda Pietro</div>
+                            <div class="horario-cor cor-laranja">Maquiagem Natural</div>
+                        </div>
+                        <div class="horario-item">
+                            <div class="horario-tempo">09:45 - 11:45</div>
+                            <div class="horario-cliente">Eduarda Santos</div>
+                            <div class="horario-cor cor-verde">Maquiagem Completa c/ Cílios</div>
+                        </div>
+                    </div>
+                    <div class="profissional-panel">
+                        <div class="profissional-header">
+                            <div class="profissional-name">Fernanda Torres</div>
+                            <div class="profissional-role">Cabeleireiro</div>
+                        </div>
+                        <div class="horario-item">
+                            <div class="horario-tempo">10:00 - 11:00</div>
+                            <div class="horario-cliente">João Silva</div>
+                            <div class="horario-cor cor-azul">Corte + Barba</div>
+                        </div>
+                        <div class="horario-item">
+                            <div class="horario-tempo">14:00 - 15:30</div>
+                            <div class="horario-cliente">Maria Oliveira</div>
+                            <div class="horario-cor cor-rosa">Degradê Premium</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="caixa" class="content-section">
+            <div class="caixa-dashboard">
+                <div class="caixa-card">
+                    <div class="card-header">
+                        <h3 class="card-title">📋 Comandas Abertas</h3>
+                        <span class="status-badge status-aberta">3 Abertas</span>
+                    </div>
+                    <div class="comanda-item">
+                        <span class="comanda-numero">Comanda #448</span>
+                        <span class="comanda-valor valor-laranja">R$ 0,00</span>
+                    </div>
+                    <div class="comanda-item">
+                        <span class="comanda-numero">Comanda #449</span>
+                        <span class="comanda-valor valor-laranja">R$ 125,00</span>
+                    </div>
+                    <button class="btn-pagamento btn-pix">Novo Pagamento PIX</button>
+                </div>
+
+                <div class="caixa-card">
+                    <div class="card-header">
+                        <h3 class="card-title">✅ Comandas Fechadas</h3>
+                        <span class="status-badge status-fechada">12 Fechadas</span>
+                    </div>
+                    <div class="comanda-item">
+                        <span class="comanda-numero">Comanda #447</span>
+                        <span class="comanda-valor valor-verde">R$ 2.970,00</span>
+                    </div>
+                    <div class="comanda-item">
+                        <span class="comanda-numero">Comanda #446</span>
+                        <span class="comanda-valor valor-verde">R$ 3.154,00</span>
+                    </div>
+                    <button class="btn-pagamento btn-cartao">Fechar Comanda</button>
+                </div>
+            </div>
+
+            <div class="totais-grid">
+                <div class="total-card">
+                    <div class="total-valor">R$ 6.124,00</div>
+                    <div class="total-label">Total da Comanda</div>
+                </div>
+                <div class="total-card">
+                    <div class="total-valor">R$ 24.341,00</div>
+                    <div class="total-label">Faturado Hoje</div>
+                </div>
+                <div class="total-card">
+                    <div class="total-valor">26</div>
+                    <div class="total-label">Total Clientes</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comissoes" class="content-section">
+            <div class="comissoes-table">
+                <div class="table-header">
+                    <h2>💰 Comissões - 29/04/2025 a 29/04/2025</h2>
+                    <div>Total Comissões: 2 | Valor Total: R$ 6.450,00</div>
+                </div>
+                <div class="table-row">
+                    <span>Fernanda Torres - Comanda 450</span>
+                    <span>R$ 780,00</span>
+                    <span>50%</span>
+                    <span>R$ 390,00</span>
+                    <span class="status-pendente">Pendente</span>
+                    <span><button>+</button></span>
+                </div>
+                <div class="table-row">
+                    <span>Grazi Pereira - Comanda 451</span>
+                    <span>R$ 850,00</span>
+                    <span>40%</span>
+                    <span>R$ 340,00</span>
+                    <span class="status-pendente">Pendente</span>
+                    <span><button>+</button></span>
+                </div>
+                <div class="table-row">
+                    <span><strong>Valor a Pagar</strong></span>
+                    <span></span>
+                    <span></span>
+                    <span><strong>R$ 730,00</strong></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="relatorios" class="content-section">
+            <div class="relatorios-grid">
+                <div class="relatorio-card">
+                    <div class="relatorio-icon">💰</div>
+                    <div class="relatorio-valor">R$ 10.716,79</div>
+                    <div>Lucro Hoje</div>
+                </div>
+                <div class="relatorio-card">
+                    <div class="relatorio-icon">📈</div>
+                    <div class="relatorio-valor">R$ 24.341,00</div>
+                    <div>Faturado</div>
+                </div>
+                <div class="relatorio-card">
+                    <div class="relatorio-icon">💳</div>
+                    <div class="relatorio-valor">R$ 9.813,00</div>
+                    <div>Cartão Débito</div>
+                </div>
+                <div class="relatorio-card">
+                    <div class="relatorio-icon">🎯</div>
+                    <div class="relatorio-valor">R$ 973,64</div>
+                    <div>Ticket Médio</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="content-section">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #001f3f;">📸 Galeria de Estilos</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">Corte Moderno</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">Barba Definida</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">Degradê Premium</div>
+                </div>
+                <div class="galeria-item">
+                    <div class="galeria-placeholder">Coloração</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Esconder todas as seções
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remover active dos tabs
+            document.querySelectorAll('.tab-link').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostrar seção selecionada
+            document.getElementById(tabName).classList.add('active');
+            
+            // Ativar tab atual
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

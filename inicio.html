@@ -3,53 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estilo Perfeito - Salão & Barbearia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>StyleBarber - Agende seu estilo perfeito</title>
+    <link rel="stylesheet" href="inicio.css">
 </head>
-<body class="index-page">
-    <div class="page-wrapper">
-        <div class="page-container">
-            <div class="page-icon">✂️</div>
-            <h1>Bem-vindo ao<br><span>Estilo Perfeito</span></h1>
-            <p class="intro-text">Seu destino para cortes modernos, barbas impecáveis e estilo único. Agende agora!</p>
-            
-            <div class="buttons">
-                <a href="login.html" class="btn btn-primary">
-                    <i class="fas fa-sign-in-alt"></i> Fazer Login
-                </a>
-                <a href="cadastro.html" class="btn btn-secondary">
-                    <i class="fas fa-user-plus"></i> Cadastrar-se
-                </a>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>StyleBarber</h1>
             </div>
+            <nav class="nav">
+                <a href="#inicio">Início</a>
+                <a href="#agendar">Agendar</a>
+                <a href="#profissionais">Profissionais</a>
+                <a href="#contato">Contato</a>
+            </nav>
+            <button class="btn-login">Login</button>
+        </div>
+    </header>
 
-            <hr class="divider">
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h2>Agende seu estilo perfeito agora!</h2>
+            <p>Barbearia criativa com os melhores profissionais</p>
+            
+            <!-- Formulário simples de agendamento -->
+            <form class="agendamento-form">
+                <div class="form-group">
+                    <select>
+                        <option>Data</option>
+                        <option>21/08/2024</option>
+                        <option>22/08/2024</option>
+                    </select>
+                    <select>
+                        <option>Profissional</option>
+                        <option>Grazi Pereira</option>
+                        <option>Fernanda Torres</option>
+                    </select>
+                </div>
+                <select class="servico-select">
+                    <option>Serviço</option>
+                    <option>Corte Moderno</option>
+                    <option>Barba Completa</option>
+                    <option>Degradê</option>
+                </select>
+                <button type="submit" class="btn-agendar">Agendar Agora</button>
+            </form>
+        </div>
+    </section>
 
-            <div class="services">
-                <h3>Nossos Serviços</h3>
-                <div class="services-grid">
-                    <div class="service-item">
-                        <i class="fas fa-cut"></i>
-                        <span>Corte Moderno<br><strong>R$45</strong></span>
+    <!-- Seção Agenda -->
+    <section id="agendar" class="agenda-section">
+        <div class="container">
+            <h2>Agenda do Dia - Quarta-feira, 21 Ago 2024</h2>
+            <div class="agenda-grid">
+                <div class="profissional-col">
+                    <h3>Grazi Pereira <span>Maquiador</span></h3>
+                    <div class="horario-block laranja">
+                        09:00-09:30<br>
+                        <small>Fernanda Pietro - Maquiagem Natural</small>
                     </div>
-                    <div class="service-item">
-                        <i class="fas fa-hand-holding-medical"></i>
-                        <span>Barba Completa<br><strong>R$35</strong></span>
+                    <div class="horario-block verde">
+                        09:45-11:45<br>
+                        <small>Eduarda - Maquiagem Completa c/ Cílios</small>
                     </div>
-                    <div class="service-item">
-                        <i class="fas fa-magic"></i>
-                        <span>Degradê Perfeito<br><strong>R$55</strong></span>
+                    <button class="btn-add">+</button>
+                </div>
+                <div class="profissional-col">
+                    <h3>Fernanda Torres <span>Cabeleireiro</span></h3>
+                    <div class="horario-block azul">
+                        10:00-11:00<br>
+                        <small>João Silva - Corte + Barba</small>
                     </div>
-                    <div class="service-item">
-                        <i class="fas fa-spa"></i>
-                        <span>Navalha<br><strong>R$25</strong></span>
-                    </div>
+                    <button class="btn-add">+</button>
                 </div>
             </div>
-
-            <p class="terms">Faça seu agendamento online 24h por dia ✨</p>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 StyleBarber. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

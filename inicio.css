@@ -1,279 +1,296 @@
-/* styles_index.css - CSS para a página inicial */
-
-/* Reset e configurações globais */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  overflow-x: hidden;
-}
-
 body {
-  font-family: 'Arial', sans-serif;
-  background: #f9f9f9; /* Cor de fundo bem clarinha, ajustada para um cinza muito claro */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px; /* Aumentado para desktop */
-  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
-/* Container principal perfeitamente centralizado */
-.index-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
   width: 100%;
-  padding: 40px; /* Aumentado para desktop */
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
 }
 
-.index-container {
-  background: rgba(255, 255, 255, 0.98);
-  padding: 60px 80px; /* Padding maior para desktop */
-  border-radius: 25px;
-  box-shadow: 
-    0 25px 50px rgba(250, 128, 114, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  width: 100%;
-  max-width: 800px; /* Largura maior para desktop */
-  backdrop-filter: blur(15px);
-  /* Borda decorativa ESTÁTICA */
-  border: 3px solid transparent;
-  background-clip: padding-box;
-  background-origin: border-box;
-  position: relative;
-  z-index: 10;
-}
-
-/* Borda externa decorativa ESTÁTICA (sem rotação) */
-.index-container::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  background: linear-gradient(45deg, #FA8072, #FF7F50, #FFA07A, #FA8072);
-  border-radius: 28px;
-  z-index: -1;
-  /* Sem animação de rotação */
-  filter: blur(1px);
-  opacity: 0.8;
-}
-
-/* Ícone decorativo no topo */
-.index-container::after {
-  content: '✂️';
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  background: rgba(255, 255, 255, 0.9);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.header .container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(250, 128, 114, 0.2);
-  border: 3px solid #FA8072;
+  padding: 1rem 20px;
 }
 
-/* Título com decoração */
-.index-container h1 {
-  text-align: center;
-  color: #d63384;
-  margin-bottom: 40px;
-  font-size: 36px; /* Fonte maior para desktop */
-  font-weight: bold;
-  text-shadow: 0 2px 4px rgba(250, 128, 114, 0.2);
-  position: relative;
+.logo h1 {
+  background: linear-gradient(45deg, #ff69b4, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.8rem;
 }
 
-.index-container h1::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #FA8072, transparent);
-  border-radius: 2px;
-}
-
-/* Texto introdutório */
-.intro-text {
-  text-align: center;
-  color: #666;
-  font-size: 18px; /* Fonte maior para desktop */
-  margin-bottom: 30px;
-  line-height: 1.5;
-}
-
-/* Botões */
-.buttons {
+.nav {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 30px;
+  gap: 2rem;
 }
 
-.btn {
-  width: auto;
-  padding: 18px 40px; /* Botões mais largos */
-  background: linear-gradient(145deg, #FA8072, #FF7F50);
+.nav a {
+  text-decoration: none;
+  color: #001f3f;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #ff69b4;
+}
+
+.btn-login {
+  background: linear-gradient(45deg, #ff69b4, #ffa500);
   color: white;
   border: none;
-  border-radius: 15px;
-  font-size: 17px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.btn-login:hover {
+  transform: scale(1.05);
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(rgba(0,31,63,0.8), rgba(255,105,180,0.3)), 
+              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f8f9fa" width="1200" height="800"/><path fill="%23ff69b4" opacity="0.1" d="M0 400Q300 200 600 400T1200 400V800H0z"/><circle fill="%23ffa500" opacity="0.2" cx="900" cy="300" r="150"/><rect fill="%23001f3f" opacity="0.1" x="200" y="500" width="200" height="100" rx="20"/></svg>');
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.agendamento-form {
+  background: rgba(255,255,255,0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  display: inline-block;
+  max-width: 500px;
+  width: 90%;
+}
+
+.form-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group select,
+.servico-select {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #ff69b4;
+  border-radius: 12px;
+  background: white;
+  font-size: 1rem;
+}
+
+.btn-agendar {
+  width: 100%;
+  background: linear-gradient(45deg, #00ff00, #ffa500);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.btn-agendar:hover {
+  transform: scale(1.02);
+}
+
+/* Agenda Section */
+.agenda-section {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.agenda-section h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #001f3f;
+  font-size: 2rem;
+}
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.profissional-col {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.profissional-col h3 {
+  margin-bottom: 2rem;
+  color: #001f3f;
+}
+
+.profissional-col span {
+  background: #ff69b4;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.horario-block {
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 
-    0 10px 30px rgba(250, 128, 114, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  text-decoration: none;
-  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 
-.btn:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 
-    0 20px 40px rgba(250, 128, 114, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+.horario-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-.btn::before,
-.btn::after {
+.horario-block::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
-  transition: all 0.6s ease;
-}
-
-.btn::before {
-  left: -100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-}
-
-.btn:hover::before {
-  left: 100%;
-}
-
-.btn::after {
   left: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
-  transform: scale(0) rotate(45deg);
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.btn:hover::after {
-  transform: scale(1) rotate(45deg);
+.horario-block:hover::after {
+  opacity: 1;
 }
 
-/* Separador decorado */
-.index-container hr {
+.laranja { background: linear-gradient(45deg, #ffa500, #ff8c00); }
+.azul { background: linear-gradient(45deg, #001f3f, #0074D9); }
+.verde { background: linear-gradient(45deg, #00ff00, #32CD32); }
+
+.horario-block small {
+  font-weight: normal;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.btn-add {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
   border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #FA8072, #FF7F50, #FA8072, transparent);
-  margin: 30px 0;
-  border-radius: 2px;
+  border-radius: 50%;
+  background: #ff69b4;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-/* Serviços com cards pequenos */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Layout em grid para desktop */
-  gap: 20px;
+.btn-add:hover {
+  background: #ff1493;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  background: #001f3f;
+  color: white;
   text-align: center;
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
+  padding: 2rem 0;
 }
 
-.services h3 {
-  grid-column: 1 / -1;
-  color: #d63384;
-  font-size: 24px;
-  margin-bottom: 15px;
+.social-links {
+  margin-top: 1rem;
 }
 
-.service-item {
-  background: linear-gradient(145deg, #f8f9fa, #ffffff);
-  padding: 15px 20px;
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  text-align: center;
+.social-links a {
+  color: #ff69b4;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: 500;
 }
 
-/* Termos decorados */
-.index-container .terms {
-  font-size: 13px;
-  color: #888;
-  text-align: center;
-  margin-top: 25px;
-  font-style: italic;
-  padding: 15px;
-  background: rgba(250, 128, 114, 0.05);
-  border-radius: 10px;
-  border-left: 4px solid #FA8072;
-}
-
-/* Responsivo */
+/* Mobile Responsivo */
 @media (max-width: 768px) {
-  .index-wrapper {
-    padding: 20px;
+  .header .container {
+      flex-direction: column;
+      gap: 1rem;
   }
-
-  .index-container {
-    padding: 50px 40px;
-    max-width: 600px;
+  
+  .nav {
+      gap: 1rem;
   }
-
-  .buttons {
-    flex-direction: column;
-    gap: 15px;
+  
+  .hero-content h2 {
+      font-size: 2rem;
   }
-
-  .btn {
-    padding: 18px 20px;
+  
+  .form-group {
+      flex-direction: column;
   }
-
-  .services {
-    grid-template-columns: 1fr;
-  }
-
-  .index-container h1 {
-    font-size: 30px;
-  }
-
-  .intro-text {
-    font-size: 16px;
+  
+  .agenda-grid {
+      grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .index-container {
-    padding: 35px 25px;
-    max-width: 100%;
+  .hero {
+      padding: 0 1rem;
   }
   
-  .index-container h1 {
-    font-size: 26px;
+  .agendamento-form {
+      margin: 0 1rem;
   }
 }
